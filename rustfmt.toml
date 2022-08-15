@@ -4,4 +4,3 @@
 # overriding any which may be found in the contributor's home or parent
 # folders.
 max_width = 80
-use_small_heuristics = "Max"
