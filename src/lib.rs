@@ -96,11 +96,17 @@ fn get_initial_entries(
                             meta,
                         });
                     } else {
-                        entries.push(Entry { name: String::from(path), meta })
+                        entries.push(Entry {
+                            name: String::from(path),
+                            meta,
+                        })
                     }
                 }
             } else {
-                entries.push(Entry { name: String::from(path), meta })
+                entries.push(Entry {
+                    name: String::from(path),
+                    meta,
+                })
             }
         }
     }
@@ -120,9 +126,14 @@ fn process_directory(
         let base_path = Path::new(name);
         let dot = base_path.join(".");
         let dot_dot = base_path.join("..");
-        entries.push(Entry { name: ".".to_string(), meta: dot.metadata()? });
-        entries
-            .push(Entry { name: "..".to_string(), meta: dot_dot.metadata()? });
+        entries.push(Entry {
+            name: ".".to_string(),
+            meta: dot.metadata()?,
+        });
+        entries.push(Entry {
+            name: "..".to_string(),
+            meta: dot_dot.metadata()?,
+        });
     }
     // Proceed to handle all the entries that can be read from this directory
     for entry in fs::read_dir(name)? {
