@@ -30,6 +30,10 @@ pub struct Cli {
     #[clap(short = 'R', long)]
     pub recursive: bool,
 
+    /// Append a one-character indicator to files based on type
+    #[clap(short = 'F', long)]
+    pub classify: bool,
+
     /// Produce a long listing
     #[clap(short = 'l')]
     pub long: bool,
@@ -50,7 +54,7 @@ pub struct Cli {
     #[clap(short = 'O', long)]
     pub no_owner: bool,
 
-    /// In a long listing, do not print owner names
+    /// Always quote names
     #[clap(short = 'Q', long)]
     pub quote_name: bool,
 
