@@ -1,4 +1,5 @@
 mod opts;
+mod output;
 
 use clap::Parser;
 use opts::Cli;
@@ -13,16 +14,16 @@ use std::{
 type SimpleResult<T> = Result<T, Box<dyn Error>>;
 
 #[derive(Debug)]
-struct Entry {
-    name: String,
-    meta: Metadata,
+pub struct Entry {
+    pub name: String,
+    pub meta: Metadata,
 }
 
 #[derive(Debug)]
-struct Directory {
-    path: PathBuf,
-    name: String,
-    meta: Metadata,
+pub struct Directory {
+    pub path: PathBuf,
+    pub name: String,
+    pub meta: Metadata,
 }
 
 pub fn run() -> SimpleResult<()> {
@@ -184,8 +185,9 @@ fn produce_output(
 
         if need_newline {
             println!();
+        } else {
+            need_newline |= true;
         }
-        need_newline |= true;
         println!("{}:", &dir_name);
 
         process_directory(&dir_name, &mut entries, &mut dirs, config)?;
